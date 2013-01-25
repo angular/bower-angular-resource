@@ -1,5 +1,5 @@
 {
-  "name": "AngularJS Resource",
+  "name": "angular-resource",
   "version": "1.0.4",
   "main": "./angular-resource.js",
   "dependencies": {
