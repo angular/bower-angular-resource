@@ -346,6 +346,14 @@ angular.module('ngResource', ['ng']).
         return ids;
       }
 
+      function extractHeaders(params, headerDefaults){
+        var ids = {};
+        forEach(headerDefaults || {}, function(value, key){
+          ids[key] = value.charAt && value.charAt(0) == '@' ? getter(params, value.substr(1)) : value;
+        });
+        return ids;
+      }
+
       function Resource(value){
         copy(value || {}, this);
       }
@@ -396,7 +404,8 @@ angular.module('ngResource', ['ng']).
           $http({
             method: action.method,
             url: route.url(extend({}, extractParams(data, action.params || {}), params)),
-            data: data
+            data: data,
+            headers: extend({}, extractHeaders(params, action.headers) || {})
           }).then(function(response) {
               var data = response.data;
 
