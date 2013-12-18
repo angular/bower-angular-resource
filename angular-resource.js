@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.2.6-build.2001+sha.3dc1803
+ * @license AngularJS v1.2.6-build.2002+sha.09f8962
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -242,7 +242,7 @@ function shallowClearAndCopy(src, dst) {
      newCard.name = "Mike Smith";
      newCard.$save();
      // POST: /user/123/card {number:'0123', name:'Mike Smith'}
-     // server returns: {id:789, number:'01234', name: 'Mike Smith'};
+     // server returns: {id:789, number:'0123', name: 'Mike Smith'};
      expect(newCard.id).toEqual(789);
  * </pre>
  *
@@ -278,7 +278,6 @@ function shallowClearAndCopy(src, dst) {
      });
    </pre>
 
- * @example
  * # Creating a custom 'PUT' request
  * In this example we create a custom method on our resource to make a PUT request
  * <pre>
