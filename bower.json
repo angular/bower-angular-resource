@@ -1,8 +1,8 @@
 {
   "name": "angular-resource",
-  "version": "1.2.8-build.2074+sha.821ed31",
+  "version": "1.2.8-build.2076+sha.6f6cb5c",
   "main": "./angular-resource.js",
   "dependencies": {
-    "angular": "1.2.8-build.2074+sha.821ed31"
+    "angular": "1.2.8-build.2076+sha.6f6cb5c"
   }
 }
