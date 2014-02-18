@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.2.14-build.2276+sha.12e4d3a
+ * @license AngularJS v1.2.14-build.2277+sha.481508d
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -157,7 +157,7 @@ function shallowClearAndCopy(src, dst) {
  *     'remove': {method:'DELETE'},
  *     'delete': {method:'DELETE'} };
  *   ```
- *   
+ *
  *   Calling these methods invoke an {@link ng.$http} with the specified http method,
  *   destination and parameters. When the data is returned from the server then the object is an
  *   instance of the resource class. The actions `save`, `remove` and `delete` are available on it
@@ -286,7 +286,7 @@ function shallowClearAndCopy(src, dst) {
  *		var app = angular.module('app', ['ngResource', 'ngRoute']);
  *
  *		// Some APIs expect a PUT request in the format URL/object/ID
- *		// Here we are creating an 'update' method 
+ *		// Here we are creating an 'update' method
  *		app.factory('Notes', ['$resource', function($resource) {
  *    return $resource('/notes/:id', null,
  *        {
