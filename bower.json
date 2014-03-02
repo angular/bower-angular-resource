@@ -1,8 +1,8 @@
 {
   "name": "angular-resource",
-  "version": "1.2.14",
+  "version": "1.2.15-build.2357+sha.2616907",
   "main": "./angular-resource.js",
   "dependencies": {
-    "angular": "1.2.14"
+    "angular": "1.2.15-build.2357+sha.2616907"
   }
 }
