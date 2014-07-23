@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.3.0-build.2970+sha.469ea33
+ * @license AngularJS v1.3.0-build.2971+sha.99a2f0a
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -126,8 +126,8 @@ function shallowClearAndCopy(src, dst) {
  *
  *   - **`action`** – {string} – The name of action. This name becomes the name of the method on
  *     your resource object.
- *   - **`method`** – {string} – HTTP request method. Valid methods are: `GET`, `POST`, `PUT`,
- *     `DELETE`, and `JSONP`.
+ *   - **`method`** – {string} – Case insensitive HTTP method (e.g. `GET`, `POST`, `PUT`,
+ *     `DELETE`, `JSONP`, etc).
  *   - **`params`** – {Object=} – Optional set of pre-bound parameters for this action. If any of
  *     the parameter value is a function, it will be executed every time when a param value needs to
  *     be obtained for a request (unless the param was overridden).
