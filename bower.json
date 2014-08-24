@@ -2,7 +2,7 @@
   "name": "angular-resource",
   "version": "1.2.24-build.406+sha.fa5daa7",
   "main": "./angular-resource.js",
-  "ignore": []
+  "ignore": [],
   "dependencies": {
     "angular": "1.2.24-build.406+sha.fa5daa7"
   }
