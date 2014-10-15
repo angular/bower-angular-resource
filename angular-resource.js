@@ -3,6 +3,10 @@
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
+if (typeof module !== "undefined" && typeof exports !== "undefined" && module.exports === exports){
+  module.exports = 'ngResource';
+}
+
 (function(window, angular, undefined) {'use strict';
 
 var $resourceMinErr = angular.$$minErr('$resource');
