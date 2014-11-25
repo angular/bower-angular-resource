@@ -504,10 +504,11 @@ angular.module('ngResource', ['ng']).
 
         function Resource(value) {
           shallowClearAndCopy(value || {}, this);
-          this.initialize();
+          this.initialized();
         }
 
-        Resource.prototype.initialize = noop;
+        Resource.prototype.initialized = noop;
+        Resource.prototype.loaded = noop;
 
         Resource.prototype.toJSON = function() {
           var data = extend({}, this);
@@ -623,13 +624,21 @@ angular.module('ngResource', ['ng']).
               return $q.reject(response);
             });
 
-            promise = promise.then(
-              function(response) {
-                var value = responseInterceptor(response);
-                (success || noop)(value, response.headers);
-                return value;
-              },
-              responseErrorInterceptor);
+            promise = promise
+              .then(
+                function(response) {
+                  var value = responseInterceptor(response);
+                  (success || noop)(value, response.headers);
+                  return value;
+                },
+                responseErrorInterceptor
+              )
+              .then(function(result) {
+                var resources = Array.isArray(result) ? result : [result];
+                resources.forEach(function(resource) {
+                    resource.loaded();
+                });
+              });
 
             if (!isInstanceCall) {
               // we are creating instance / collection
