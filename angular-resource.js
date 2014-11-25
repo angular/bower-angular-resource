@@ -504,7 +504,10 @@ angular.module('ngResource', ['ng']).
 
         function Resource(value) {
           shallowClearAndCopy(value || {}, this);
+          this.initialize();
         }
+
+        Resource.prototype.initialize = noop;
 
         Resource.prototype.toJSON = function() {
           var data = extend({}, this);
