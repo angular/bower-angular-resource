@@ -638,6 +638,8 @@ angular.module('ngResource', ['ng']).
                 resources.forEach(function(resource) {
                     resource.loaded();
                 });
+                
+                return result;
               });
 
             if (!isInstanceCall) {
