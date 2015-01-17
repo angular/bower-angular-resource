@@ -1,6 +1,6 @@
 /**
- * @license AngularJS v1.3.10-build.22+sha.13edaa9
- * (c) 2010-2014 Google, Inc. http://angularjs.org
+ * @license AngularJS v1.3.10-build.7+sha.1f9da20
+ * (c) 2010-2015 Google, Inc. http://angularjs.org
  * License: MIT
  */
 (function(window, angular, undefined) {'use strict';
@@ -116,7 +116,7 @@ function shallowClearAndCopy(src, dst) {
  *   example, if the `defaultParam` object is `{someParam: '@someProp'}` then the value of `someParam`
  *   will be `data.someProp`.
  *
- * @param {Object.<Object>=} actions Hash with declaration of custom actions that should extend
+ * @param {Object.<Object>=} actions Hash with declaration of custom action that should extend
  *   the default set of resource actions. The declaration should be created in the format of {@link
  *   ng.$http#usage $http.config}:
  *
