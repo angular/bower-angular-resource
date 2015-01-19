@@ -1,6 +1,7 @@
 {
   "name": "angular-resource",
   "version": "1.4.0-build.3797+sha.0db5b21",
+  "main": "./angular-resource.js",
   "description": "AngularJS module for interacting with RESTful server-side data sources",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
