@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.4.0-build.3846+sha.7a52da6
+ * @license AngularJS v1.4.0-build.3847+sha.0a8e113
  * (c) 2010-2015 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -90,7 +90,7 @@ function shallowClearAndCopy(src, dst) {
      }]);
  * ```
  *
- * @param {string} url A parametrized URL template with parameters prefixed by `:` as in
+ * @param {string} url A parameterized URL template with parameters prefixed by `:` as in
  *   `/user/:username`. If you are using a URL with a port number (e.g.
  *   `http://example.com:8080/api`), it will be respected.
  *
