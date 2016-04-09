@@ -1,6 +1,6 @@
 {
   "name": "angular-resource",
-  "version": "1.5.4-build.4731+sha.92c3b75",
+  "version": "1.5.4-build.4732+sha.5d695e5",
   "description": "AngularJS module for interacting with RESTful server-side data sources",
   "main": "index.js",
   "scripts": {
