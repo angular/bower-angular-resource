@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.5.5-build.4756+sha.165a862
+ * @license AngularJS v1.5.5
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -515,7 +515,7 @@ angular.module('ngResource', ['ng']).
             } else {
               url = url.replace(new RegExp("(\/?):" + urlParam + "(\\W|$)", "g"), function(match,
                   leadingSlashes, tail) {
-                if (tail.charAt(0) === '/') {
+                if (tail.charAt(0) == '/') {
                   return tail;
                 } else {
                   return leadingSlashes + tail;
@@ -557,7 +557,7 @@ angular.module('ngResource', ['ng']).
           actionParams = extend({}, paramDefaults, actionParams);
           forEach(actionParams, function(value, key) {
             if (isFunction(value)) { value = value(); }
-            ids[key] = value && value.charAt && value.charAt(0) === '@' ?
+            ids[key] = value && value.charAt && value.charAt(0) == '@' ?
               lookupDottedPath(data, value.substr(1)) : value;
           });
           return ids;
@@ -706,9 +706,12 @@ angular.module('ngResource', ['ng']).
               response.resource = value;
 
               return response;
+            }, function(response) {
+              (error || noop)(response);
+              return $q.reject(response);
             });
 
-            promise = promise['finally'](function() {
+            promise['finally'](function() {
               value.$resolved = true;
               if (!isInstanceCall && cancellable) {
                 value.$cancelRequest = angular.noop;
@@ -723,13 +726,7 @@ angular.module('ngResource', ['ng']).
                 (success || noop)(value, response.headers);
                 return value;
               },
-              responseErrorInterceptor || error ?
-              function(response) {
-                (error || noop)(response);
-                (responseErrorInterceptor || noop)(response);
-                return response;
-              }
-              : undefined);
+              responseErrorInterceptor);
 
             if (!isInstanceCall) {
               // we are creating instance / collection
@@ -737,18 +734,13 @@ angular.module('ngResource', ['ng']).
               // - return the instance / collection
               value.$promise = promise;
               value.$resolved = false;
-              if (cancellable) value.$cancelRequest = cancelRequest;
+              if (cancellable) value.$cancelRequest = timeoutDeferred.resolve;
 
               return value;
             }
 
             // instance call
             return promise;
-
-            function cancelRequest(value) {
-              promise.catch(noop);
-              timeoutDeferred.resolve(value);
-            }
           };
 
 
