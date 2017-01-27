@@ -1,10 +1,10 @@
 {
   "name": "angular-resource",
-  "version": "1.6.2-build.5252+sha.7019d9f",
+  "version": "1.6.2-build.5253+sha.fd4f011",
   "license": "MIT",
   "main": "./angular-resource.js",
   "ignore": [],
   "dependencies": {
-    "angular": "1.6.2-build.5252+sha.7019d9f"
+    "angular": "1.6.2-build.5253+sha.fd4f011"
   }
 }
