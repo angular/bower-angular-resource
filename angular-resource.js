@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.6.8-build.5525+sha.9a521cb
+ * @license AngularJS v1.6.8
  * (c) 2010-2017 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -190,12 +190,11 @@ function shallowClearAndCopy(src, dst) {
  *     for more information.
  *   - **`responseType`** - `{string}` - see
  *     [requestType](https://developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest#responseType).
- *   - **`interceptor`** - `{Object=}` - The interceptor object has four optional methods -
- *     `request`, `requestError`, `response`, and `responseError`. See
- *     {@link ng.$http $http interceptors} for details. Note that `request`/`requestError`
- *     interceptors are applied before calling `$http`, thus before any global `$http` interceptors.
- *     The resource instance or array object is accessible by the `resource` property of the
- *     `http response` object passed to response interceptors.
+ *   - **`interceptor`** - `{Object=}` - The interceptor object has two optional methods -
+ *     `response` and `responseError`. Both `response` and `responseError` interceptors get called
+ *     with `http response` object. See {@link ng.$http $http interceptors}. In addition, the
+ *     resource instance or array object is accessible by the `resource` property of the
+ *     `http response` object.
  *     Keep in mind that the associated promise will be resolved with the value returned by the
  *     response interceptor, if one is specified. The default response interceptor returns
  *     `response.resource` (i.e. the resource instance or array).
@@ -291,7 +290,7 @@ function shallowClearAndCopy(src, dst) {
  *
  *   - `toJSON`: It returns a simple object without any of the extra properties added as part of
  *     the Resource API. This object can be serialized through {@link angular.toJson} safely
- *     without attaching AngularJS-specific fields. Notice that `JSON.stringify` (and
+ *     without attaching Angular-specific fields. Notice that `JSON.stringify` (and
  *     `angular.toJson`) automatically use this method when serializing a Resource instance
  *     (see [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#toJSON%28%29_behavior)).
  *
@@ -442,7 +441,7 @@ function shallowClearAndCopy(src, dst) {
  *
  */
 angular.module('ngResource', ['ng']).
-  info({ angularVersion: '1.6.8-build.5525+sha.9a521cb' }).
+  info({ angularVersion: '1.6.8' }).
   provider('$resource', function ResourceProvider() {
     var PROTOCOL_AND_IPV6_REGEX = /^https?:\/\/\[[^\]]*][^/]*/;
 
@@ -713,9 +712,6 @@ angular.module('ngResource', ['ng']).
             var isInstanceCall = this instanceof Resource;
             var value = isInstanceCall ? data : (action.isArray ? [] : new Resource(data));
             var httpConfig = {};
-            var requestInterceptor = action.interceptor && action.interceptor.request || undefined;
-            var requestErrorInterceptor = action.interceptor && action.interceptor.requestError ||
-              undefined;
             var responseInterceptor = action.interceptor && action.interceptor.response ||
               defaultResponseInterceptor;
             var responseErrorInterceptor = action.interceptor && action.interceptor.responseError ||
@@ -752,14 +748,7 @@ angular.module('ngResource', ['ng']).
               extend({}, extractParams(data, action.params || {}), params),
               action.url);
 
-            // Start the promise chain
-            var promise = $q.
-              resolve(httpConfig).
-              then(requestInterceptor).
-              catch(requestErrorInterceptor).
-              then($http);
-
-            promise = promise.then(function(response) {
+            var promise = $http(httpConfig).then(function(response) {
               var data = response.data;
 
               if (data) {
